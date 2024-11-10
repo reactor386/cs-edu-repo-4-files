@@ -1,0 +1,35 @@
+
+# https://learn.microsoft.com/en-us/visualstudio/ide/create-portable-custom-editor-options?view=vs-2022
+# https://habr.com/ru/articles/220131/
+
+# for apply these settings to existing code
+#  go to Edit > Advanced > Format Document (Ctrl+K, Ctrl+D)
+# which only applies white space settings, such as indent style
+
+# all properties and values are case-insensitive
+# if a property is not specified, the editor settings will be used
+
+
+# [root] - should be specified at the top of the file
+#  set to [true] if you want to ensure that no settings from any higher-level
+#  .editorconfig files are applied to this part the lower-level files
+
+# [indent_style] - set to [tab] Tab indentation or [space] Space indentation
+
+# [indent_size] - whole number defining the number of columns
+#  used for each indentation level and the width of soft tabs (when supported).
+
+# [tab_width] - overwrites [indent_size] when [indent_style] is set to [tab]
+#  need not be specified unless it differs from the value of [indent_size]
+
+
+# top-most EditorConfig file
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+
+[*.{cs,py}]
+indent_size = 4
+
