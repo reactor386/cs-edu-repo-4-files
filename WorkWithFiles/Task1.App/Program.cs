@@ -122,26 +122,26 @@ namespace WorkWithFiles
                 foreach (DirectoryInfo subDirectory in directory.GetDirectories())
                 {
                     res += CleanFolderByTimeModifiedRoutine(subDirectory, pickTime);
+                }
 
-                    if ((subDirectory.GetFiles().Length == 0)
-                        && (subDirectory.GetDirectories().Length == 0)
-                        && (subDirectory.LastAccessTimeUtc < pickTime))
+                if ((directory.GetFiles().Length == 0)
+                    && (directory.GetDirectories().Length == 0)
+                    && (directory.LastAccessTimeUtc < pickTime))
+                {
+                    Console.WriteLine($"info: delete non actual folder: {directory.Name}");
+                    try
                     {
-                        Console.WriteLine($"info: delete non actual folder: {subDirectory.Name}");
-                        try
-                        {
-                            subDirectory.Delete(false);
-                        }
-                        catch
-                        {
-                            Console.WriteLine("err: error when delete the folder");
-                            res++;
-                        }
+                        directory.Delete(false);
                     }
-                    else
+                    catch
                     {
-                        Console.WriteLine($"info: folder {subDirectory.Name} is actual");
+                        Console.WriteLine("err: error when delete the folder");
+                        res++;
                     }
+                }
+                else
+                {
+                    Console.WriteLine($"info: folder {directory.Name} is actual");
                 }
 
                 return res;
