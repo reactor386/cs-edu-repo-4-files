@@ -34,9 +34,6 @@ namespace WorkWithFiles
                 Console.WriteLine("Type in the folder path: ");
                 string sFolderPath = Console.ReadLine() ?? string.Empty;
 
-                Console.WriteLine($"selected folder:");
-                Console.WriteLine($"  [{Path.GetFullPath(sFolderPath)}]");
-
                 int nResult = 0;
                 int sizeResult = 0;
                 int cleanResult = 0;
@@ -58,6 +55,9 @@ namespace WorkWithFiles
                 //  затем вычисляем размер папки снова
                 while (nRun < 2)
                 {
+                    Console.WriteLine($"selected folder:");
+                    Console.WriteLine($"  [{Path.GetFullPath(sFolderPath)}]");
+
                     Console.WriteLine($"calculate folder size");
                     (long size, int errors1) = GetDirectorySize(sFolderPath);
                     sizeResult = errors1;
